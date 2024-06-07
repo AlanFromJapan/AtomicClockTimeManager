@@ -50,3 +50,45 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+
+#################
+## Eclipse
+#################
+
+*.pydevproject
+#.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+#.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+#.cproject
+
+# PDT-specific
+.buildpath
+
+
+# Build results
+
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]in/
+[Oo]bj/
