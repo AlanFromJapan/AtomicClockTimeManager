@@ -29,6 +29,11 @@
 #include "displays/TinyNumitron.h"
 
 
+//Serial communication, mostly for debugging
+#include "serial/serialComm.h"
+
+
+#include "pulse/pulse.h"
 
 /************************************************************************/
 /* Setup                                                                */
@@ -36,8 +41,9 @@
 void mainSetup() {
 
 	//Start Serial
-//	serialHardwareInit();
-//	USART_SendString("\n\n------------------------");
+	serialHardwareInit();
+	USART_SendString("\n------------------------");
+	USART_SendString("\nHello!");
 
 	//macro to be redefined by each RTC
 	RTC_INIT();
@@ -49,6 +55,8 @@ void mainSetup() {
 	//macro to be redefined by each display
 	SETUP_DISPLAY();
 	
+	//Start listening for 600Hz pulses
+	initPulse();
 }
 
 
