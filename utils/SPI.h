@@ -12,6 +12,7 @@
 #ifndef SPI_H_
 #define SPI_H_
 
+#include "MCMShared.h"
 
 #define SPI_CLOCK_DIV4 0x00
 #define SPI_CLOCK_DIV16 0x01

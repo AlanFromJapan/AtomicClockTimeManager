@@ -17,11 +17,12 @@
 #include <util/delay.h>
 
 //Program includes
-#include "utils/MCMShared.h"
+#include "utils/date_type.h"
 
 //Choose what RTC to use
 #include "RTC/DS3234.h"
 //#include "RTCFake.h"
+#include "RTC/PulseRTC.h"
 
 
 //Choose the display to use (put the define BEFORE the includes!)
@@ -33,7 +34,6 @@
 #include "serial/serialComm.h"
 
 
-#include "pulse/pulse.h"
 
 /************************************************************************/
 /* Setup                                                                */
@@ -56,7 +56,12 @@ void mainSetup() {
 	SETUP_DISPLAY();
 	
 	//Start listening for 600Hz pulses
-	initPulse();
+	Date d;
+	RTC_READ_TIME(&d);
+	initPulse(&d);
+	// redefine the macro to get the time to be the PULSE time one
+#undef RTC_READ_TIME
+#define RTC_READ_TIME(d) pulseReadTime(d)
 }
 
 

@@ -14,33 +14,22 @@
 // --------- /Constants taken from Arduino.h ----------
 
 
-typedef struct {
-  uint8_t second;
-  uint8_t minute;
-  uint8_t hour;
-  uint8_t dayOfWeek;
-  uint8_t dayOfMonth; 
-  uint8_t month;
-  uint8_t year;
-} 
-Date;
-
 
 // Convert normal decimal numbers to binary coded decimal
-uint8_t decToBcd(uint8_t val)
+unsigned char decToBcd(unsigned char val)
 {
   return ( (val/10*16) + (val%10) );
 }
 
 // Convert binary coded decimal to normal decimal numbers
-uint8_t bcdToDec(uint8_t val)
+unsigned char bcdToDec(unsigned char val)
 {
   return ( (val/16*10) + (val%16) );
 }
 
 //alternate way to do it
-uint8_t bcd2Dec (uint8_t val){
-  uint8_t v  = val & 0x0f;
+unsigned char bcd2Dec (unsigned char val){
+  unsigned char v  = val & 0x0f;
   
   if ((val  & (1 << 4)) != 0){
     v += 10;
