@@ -22,6 +22,7 @@
 //Choose what RTC to use
 #include "RTC/DS3234.h"
 //#include "RTCFake.h"
+//Include pulse AFTER DS3234 (order matters)
 #include "RTC/PulseRTC.h"
 
 
@@ -95,6 +96,17 @@ int main(void) {
 //		USART_SendString(vBuff);
 //
 //		USART_SendString(". ");
+
+
+		//Save the time to RTC: in case power is lost, save the time now to the RTC
+		//Keep the delay below small to ensure not too much drift incurs
+		//Save daily, most likely no benefit to save more frequently because of imprecision
+		if (vLastDate.hour == 11 && vLastDate.minute == 11 && vLastDate.second == 11){
+			RTC_SET_TIME(&vLastDate);
+
+			//wait a sec (tubes don't need refresh, and not showing seconds anyway)
+			_delay_ms(1100);
+		}
 
 
 	    //small delay
